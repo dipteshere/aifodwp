@@ -1,0 +1,10 @@
+# Audience Communications - Autopilot Enrollment Failure (DESKTOP-FB099)
+
+## Audience 1 - Non-technical executive
+A single device onboarding issue was identified and contained. One endpoint (DESKTOP-FB099) failed Autopilot enrollment due to a pre-existing legacy device-management enrollment state, which blocked completion of the modern enrollment flow. There is no evidence of licensing or network platform issues, and no broad service degradation was observed. Recovery actions are defined, and preventive controls are being added to stop recurrence during reprovisioning.
+
+## Audience 2 - Affected end-user
+Your device setup issue has been identified. The device could not finish automatic company enrollment because an older enrollment record already existed on the machine. Your account, data, and licenses are not the problem. Support will remove the old enrollment state and rerun setup so the device can complete onboarding. If you are asked to retry setup, please keep the device on a stable network and contact the service desk if any error is shown again.
+
+## Audience 3 - Engineer-to-engineer internal note
+Incident signature: Autopilot EnrollmentState Failed at 2024-03-15 09:18:44 with 0x80180014 and explicit message "The device is already enrolled in MDM." DeviceInfo confirms MDMEnrolled Yes from legacy manual enrollment dated 2023-11-04. Downstream impact: PolicyManager 0/4 profiles applied with LastError 0x80070005; ComplianceEngine could not evaluate because enrollment not complete. Non-causal controls validated healthy: AzureADJoined Yes, M365/IntuneP1/Autopilot licenses Yes, required endpoints reachable, no proxy. Remediation path: retire stale managed device state, validate Entra object hygiene, clear device-side enrollment artifacts, reset to OOBE, re-run Autopilot, verify enrollment/profile/compliance success.

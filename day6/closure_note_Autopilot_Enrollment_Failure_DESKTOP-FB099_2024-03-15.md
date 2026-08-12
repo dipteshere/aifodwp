@@ -1,0 +1,5 @@
+Resolved. Cause: Existing legacy manual MDM enrollment on DESKTOP-FB099 conflicted with Autopilot enrollment, producing failure 0x80180014 ("The device is already enrolled in MDM"). Impact chain: enrollment did not complete, policy application remained 0 of 4, and compliance evaluation could not proceed.
+
+Action: Confirmed incident signature from MDM diagnostic export, identified prior enrollment state (2023-11-04), executed cleanup-and-reenrollment plan (service-side enrollment record hygiene, device-side unenrollment cleanup, and Autopilot retry path), and defined post-fix validation criteria for enrollment, policy, and compliance.
+
+Preventive: Added requirement for pre-enrollment legacy-state check before Autopilot reprovisioning, standardized support runbook sequence, and introduced proactive detection/reporting for devices that are both Autopilot-targeted and already legacy-enrolled. User communication completed and incident moved to monitoring/verification closure.
